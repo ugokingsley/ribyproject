@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+ <div class="col-sm-6 col-sm-offset-3">
+
+<h1 class="sub-header">Riby.me | Loans made easy </h1>
+     <h2>{{title}} </h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+
+                  <th>Name</th>
+                  <th>Email</th>
+
+                </tr>
+              </thead>
+  {% for obj in object_list %}
+
+              <tbody>
+                <tr>
+                  <td>{{obj.name}}</td>
+                  <td>{{obj.email}}</td>
+
+                </tr>
+
+              </tbody>
+
+ {% endfor %}
+            </table>
+</div>
+
+     <div class="pagination">
+         <span class="step-links">
+             {% if object_list.has_previous %}
+                <a href="?{{page_request_var}}={{object_list.previous_page_number}}"><i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+&nbsp;previous</a>
+             {% endif %}
+             <span class="current">
+                page {{object_list.number}} of {{object_list.paginator.num_pages}}
+             </span>
+             {% if object_list.has_next %}
+                <a href="?{{page_request_var}}={{object_list.next_page_number}}"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+&nbsp;next</a>
+             {% endif %}
+         </span>
+     </div>
+
+ </div>
+{% endblock content %}
